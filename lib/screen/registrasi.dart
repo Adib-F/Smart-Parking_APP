@@ -1,39 +1,31 @@
 import 'package:flutter/material.dart';
-import 'registrasi.dart';
 
-void main() {
-  runApp(const MaterialApp(
-    home: Login(),
-  ));
-}
-
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Registrasi extends StatefulWidget {
+  const Registrasi({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Registrasi> createState() => _RegistrasiState();
 }
 
-class _LoginState extends State<Login> {
-  final _formKey = GlobalKey<FormState>(); // Key untuk form validation
+class _RegistrasiState extends State<Registrasi> {  
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Colors.blue.shade500, Colors.white],
-              ),
+      body: Stack(children: [
+        Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Colors.blue.shade500, Colors.white],
             ),
-            child: Center(
-              child: SingleChildScrollView(
+          ),
+          child: Center(
+            child: Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
                   children: [
@@ -45,14 +37,13 @@ class _LoginState extends State<Login> {
                     ),
                     const SizedBox(height: 16.0),
                     const Text(
-                      "Masuk",
+                      "Registrasi",
                       style: TextStyle(
                         fontSize: 38.0,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF121010),
                       ),
                     ),
-                    // CARD LOGIN
                     Card(
                       elevation: 8.0,
                       shape: RoundedRectangleBorder(
@@ -65,6 +56,23 @@ class _LoginState extends State<Login> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
+                              const SizedBox(height: 20.0),
+                              TextFormField(
+                                controller: _emailController,
+                                decoration: InputDecoration(
+                                  labelText: "Nama pengguna",
+                                  prefixIcon: const Icon(Icons.person),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "Email tidak boleh kosong";
+                                  }
+                                  return null;
+                                },
+                              ),
                               const SizedBox(height: 20.0),
                               TextFormField(
                                 controller: _emailController,
@@ -122,57 +130,11 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 27.0),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Aksi ketika tombol ditekan
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                        backgroundColor: Colors.blue, // Warna tombol
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(10), // Border radius
-                        ),
-                      ),
-                      child: Text(
-                        "Masuk",
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16.0),
-                    const Text(
-                      "atau",
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Registrasi()),
-                        );
-                      },
-                      child: const Text(
-                        "Registrasi",
-                        style: TextStyle(
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
                   ],
-                ),
-              ),
-            ),
+                )),
           ),
-          // Logo di ujung atas
-          Positioned(
+        ),
+        Positioned(
             top: 0,
             left: 0,
             right: 0,
@@ -195,8 +157,7 @@ class _LoginState extends State<Login> {
               ),
             ),
           ),
-        ],
-      ),
+      ]),
     );
   }
 }
