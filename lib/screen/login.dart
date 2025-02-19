@@ -36,7 +36,21 @@ class _LoginState extends State<Login> {
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
                   children: [
-                    const SizedBox(height: 20), // Beri jarak setelah logo
+                    const SizedBox(height: 75.0),
+                    Image.asset(
+                      'images/LogoParkwell.png',
+                      width: 100,
+                      height: 100,
+                    ),
+                    const SizedBox(height: 16.0),
+                    const Text(
+                      "Masuk",
+                      style: TextStyle(
+                        fontSize: 38.0,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF121010),
+                      ),
+                    ),
                     // CARD LOGIN
                     Card(
                       elevation: 8.0,
@@ -50,14 +64,6 @@ class _LoginState extends State<Login> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const Text(
-                                "Masuk",
-                                style: TextStyle(
-                                  fontSize: 28.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue,
-                                ),
-                              ),
                               const SizedBox(height: 20.0),
                               TextFormField(
                                 controller: _emailController,
@@ -67,6 +73,7 @@ class _LoginState extends State<Login> {
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
+                                  
                                 ),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
@@ -94,62 +101,65 @@ class _LoginState extends State<Login> {
                                 },
                               ),
                               const SizedBox(height: 24.0),
-                              SizedBox(
-                                width: double.infinity,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      // Proses login
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        const SnackBar(
-                                          content: Text("Login berhasil!"),
-                                        ),
-                                      );
-                                    }
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.blue,
-                                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                  ),
-                                  child: const Text(
-                                    "Masuk",
-                                    style: TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 16.0),
-                              TextButton(
-                                onPressed: () {
-                                  // Navigasi ke halaman lupa password
-                                },
-                                child: const Text(
-                                  "Lupa Password?",
-                                  style: TextStyle(
-                                    color: Colors.blue,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 10.0),
-                              TextButton(
-                                onPressed: () {
-                                  // Navigasi ke halaman registrasi
-                                },
-                                child: const Text(
-                                  "Registrasi",
-                                  style: TextStyle(
-                                    color: Colors.blue,
-                                  ),
-                                ),
-                              ),
+                              // SizedBox(
+                              //   width: double.infinity,
+                              //   child: ElevatedButton(
+                              //     onPressed: () {
+                              //       if (_formKey.currentState!.validate()) {
+                              //         // Proses login
+                              //         ScaffoldMessenger.of(context)
+                              //             .showSnackBar(
+                              //           const SnackBar(
+                              //             content: Text("Login berhasil!"),
+                              //           ),
+                              //         );
+                              //       }
+                              //     },
+                              //   ),
+                              // ),
                             ],
                           ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 27.0),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Aksi ketika tombol ditekan
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                        backgroundColor: Colors.blue, // Warna tombol
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(10), // Border radius
+                        ),
+                      ),
+                      child: Text(
+                        "Masuk",
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16.0),
+                    const Text(
+                        "atau",
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                    TextButton(
+                      onPressed: () {
+                        // Navigasi ke halaman registrasi
+                      },
+                      child: const Text(
+                        "Registrasi",
+                        style: TextStyle(
+                          color: Colors.blue,
                         ),
                       ),
                     ),
