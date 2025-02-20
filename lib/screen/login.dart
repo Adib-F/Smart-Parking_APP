@@ -15,9 +15,10 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final _formKey = GlobalKey<FormState>(); // Key untuk form validation
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,10 @@ class _LoginState extends State<Login> {
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [Colors.blue.shade500, Colors.white],
+                colors: [
+                Color(0xFF6087D8),
+                Color(0xFFFFFFFF), 
+              ],
               ),
             ),
             child: Center(
@@ -39,13 +43,13 @@ class _LoginState extends State<Login> {
                   children: [
                     const SizedBox(height: 75.0),
                     Image.asset(
-                      'images/LogoParkwell.png',
-                      width: 100,
-                      height: 100,
+                      'assets/images/LogoParkwell.png',
+                      width: 140,
+                      height: 140,
                     ),
                     const SizedBox(height: 16.0),
                     const Text(
-                      "Masuk",
+                      "Login",
                       style: TextStyle(
                         fontSize: 38.0,
                         fontWeight: FontWeight.bold,
@@ -85,13 +89,26 @@ class _LoginState extends State<Login> {
                               const SizedBox(height: 16.0),
                               TextFormField(
                                 controller: _passwordController,
-                                obscureText: true,
+                                obscureText: _obscureText,
                                 decoration: InputDecoration(
                                   labelText: "Kata Sandi",
                                   prefixIcon: const Icon(Icons.lock),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
+                                  suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _obscureText
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _obscureText =
+                                          !_obscureText; 
+                                    });
+                                  },
+                                ),
                                 ),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
@@ -129,8 +146,8 @@ class _LoginState extends State<Login> {
                       },
                       style: ElevatedButton.styleFrom(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                        backgroundColor: Colors.blue, // Warna tombol
+                            EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+                        backgroundColor: Colors.blue,
                         shape: RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.circular(10), // Border radius
@@ -146,26 +163,34 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     const SizedBox(height: 16.0),
-                    const Text(
-                      "atau",
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Registrasi()),
-                        );
-                      },
-                      child: const Text(
-                        "Registrasi",
-                        style: TextStyle(
-                          color: Colors.blue,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "atau",
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                    ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Registrasi()),
+                            );
+                          },
+                          child: const Text(
+                            "Registrasi",
+                            style: TextStyle(
+                              fontSize: 19.0,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -177,17 +202,17 @@ class _LoginState extends State<Login> {
             left: 0,
             right: 0,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(30.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Image.asset(
-                    'images/Indonesia.png',
+                    'assets/images/PolobatamLogo.png',
                     width: 50,
                     height: 50,
                   ),
                   Image.asset(
-                    'images/PolobatamLogo.png',
+                    'assets/images/Indonesia.png',
                     width: 50,
                     height: 50,
                   ),
