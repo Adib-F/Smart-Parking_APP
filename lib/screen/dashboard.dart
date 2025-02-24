@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:smart_parking/screen/real_time.dart';
+
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
@@ -130,7 +132,7 @@ class _DashboardState extends State<Dashboard> {
                               shape: BoxShape.circle,
                               color: _currentPage == index
                                   ? Colors.white
-                                  : Colors.white.withOpacity(0.4),
+                                  : Colors.white.withValues(),
                             ),
                           );
                         }),
@@ -144,7 +146,13 @@ class _DashboardState extends State<Dashboard> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RealTime()),
+                            );
+                    },
                     style: ElevatedButton.styleFrom(
                       padding:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 30),
